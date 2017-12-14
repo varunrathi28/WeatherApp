@@ -19,7 +19,7 @@ typealias DownloadComplete = () -> ()
 
 let CURRENT_WEATHER_URL:String = "http://api.openweathermap.org/data/2.5/weather?lat=\(Location.sharedInstance.latitude)&lon=\(Location.sharedInstance.longitude)&appid=\(API_KEY)"
 
-let FORECAST_URL:String = "http://api.openweathermap.org/data/2.5/forecast?lat=\(Location.sharedInstance.latitude)&lon=\(Location.sharedInstance.longitude)&mode=json&appid=\(API_KEY)"
+let FORECAST_URL:String = "http://api.openweathermap.org/data/2.5/forecast?lat=%@&lon=%@&mode=json&appid=\(API_KEY)"
 
 let WEATHER_IMG_BASE_URL:String = "https://openweathermap.org/img/w/"
 

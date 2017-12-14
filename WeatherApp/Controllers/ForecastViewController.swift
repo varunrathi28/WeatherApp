@@ -29,7 +29,7 @@ class ForecastViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       fetchWeather()
+       
         carouselView.backgroundColor = UIColor.clear
         
         let barButton = UIBarButtonItem(title:"Back", style: .done, target: self, action: #selector(backPressed))
@@ -42,6 +42,7 @@ class ForecastViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        fetchWeather()
         
     }
     
@@ -67,14 +68,14 @@ class ForecastViewController: UIViewController {
     
    func  updateUI(){
         cityNameLbl.text = Location.sharedInstance.city
-        cordinateLbl.text = getCoordinateFormat(location: Location.sharedInstance)
+        cordinateLbl.text = getCoordinateFormat(location:currentLocation)
         setColorsForWheather(forecast: arrDatasource[0])
     }
     
-    func getCoordinateFormat(location:Location) -> String {
+    func getCoordinateFormat(location:CLLocation) -> String {
         
-        let latitute = String(format: "%.3f",location.latitude)
-        let longitude =  String(format: "%.3f", location.longitude)
+        let latitute = String(format: "%.3f",location.coordinate.latitude)
+        let longitude =  String(format: "%.3f", location.coordinate.longitude)
         return "( \(latitute) , \(longitude) )"
     }
     
@@ -94,7 +95,10 @@ class ForecastViewController: UIViewController {
     
     func downloadForecastData(completed: @escaping DownloadComplete) {
         //Downloading forecast weather data for TableView
-        Alamofire.request(FORECAST_URL).responseJSON { response in
+        
+        let urlManager = URLManager()
+        let url = urlManager.getUrlForCoordinate(coordinate: currentLocation.coordinate)
+        Alamofire.request(url).responseJSON { response in
             let result = response.result
             
             if let dict = result.value as? Dictionary<String, AnyObject> {
@@ -106,7 +110,7 @@ class ForecastViewController: UIViewController {
                         self.arrDatasource.append(forecast)
                         print(obj)
                     }
-                    self.arrDatasource.remove(at: 0)
+                 //   self.arrDatasource.remove(at: 0)
                   
                 }
             }
@@ -122,6 +126,12 @@ class ForecastViewController: UIViewController {
             
         case "Rain":
             backgroundImage.image = UIImage(named:"back_rain")
+            
+        case "Extreme":
+            backgroundImage.image = UIImage(named:"back_extreme")
+            
+        case "Snow":
+            backgroundImage.image = UIImage(named:"back_snow")
             
         default:
             backgroundImage.image = UIImage(named:"back_clear")

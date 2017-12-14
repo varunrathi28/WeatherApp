@@ -17,7 +17,11 @@ class  Weather{
     
     static let weatherDic = ["Clouds" : "cloud",
                              "Rain": "rain",
-                             "Clear" : "clear"]
+                             "Clear" : "clear",
+                             "Snow" : "snow",
+                             "Extreme": "extreme"
+    
+    ]
     
     
     static func getImageFor(condtion:String) ->String

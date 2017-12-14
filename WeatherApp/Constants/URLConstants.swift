@@ -7,4 +7,16 @@
 //  Copyright © 2017 vrat28. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import CoreLocation
+
+struct URLManager {
+
+    func getUrlForCoordinate(coordinate: CLLocationCoordinate2D) ->String
+    {
+       
+        
+        let url =  String(format: FORECAST_URL,String(coordinate.latitude),String(coordinate.longitude))
+        return url
+    }
+}

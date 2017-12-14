@@ -18,8 +18,10 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Weather.sharedInstance.isFarenheit = true
         setUpLocationManager()
         requestAuthorization()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -90,6 +92,7 @@ class MapViewController: UIViewController {
         pointAnnotation.title = "Current Location"
         pointAnnotation.subtitle = "Get Forecast"
         
+        
         let  pinAnnotationView:MKPinAnnotationView = MKPinAnnotationView(annotation: pointAnnotation, reuseIdentifier: "pin")
         mapView.addAnnotation(pinAnnotationView.annotation!)
     }
@@ -103,10 +106,11 @@ class MapViewController: UIViewController {
     {
         let storyboard = UIStoryboard(name:"Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier:StoryboardID.Forecast) as! ForecastViewController
+        vc.currentLocation = currentLocation!
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func fetchCity(with location:CLLocation)
+    func fetchCity(with location:CLLocation, completion: @escaping DownloadComplete)
     {
         // ReverseGeocode city name from coordinate
         
@@ -122,6 +126,7 @@ class MapViewController: UIViewController {
                     
                     Location.sharedInstance.city = cityName
                     geoCoder.cancelGeocode()
+                    completion()
                 }
             }
         }
@@ -143,6 +148,7 @@ extension MapViewController: MKMapViewDelegate {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "User")
                 annotationView?.canShowCallout = true
                 annotationView?.isDraggable = true
+              
             }
             else {
                 
@@ -163,7 +169,9 @@ extension MapViewController: MKMapViewDelegate {
             if  let newCoord = view.annotation?.coordinate {
                 
                currentLocation =  CLLocation(latitude:newCoord.latitude, longitude: newCoord.longitude)
-                fetchCity(with: currentLocation!)
+                fetchCity(with: currentLocation!){
+                    
+                }
             }
             
         }
@@ -175,7 +183,11 @@ extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
-    
+        let annotation = view.annotation
+        
+        let coordinate = annotation?.coordinate
+        
+        
         pushToForecastScreen()
         
     }
@@ -193,14 +205,14 @@ extension MapViewController:CLLocationManagerDelegate  {
             var region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpanMake(0.25,0.25))
             
             
-            fetchCity(with: userLocation)
+            fetchCity(with: userLocation){
+                   self.mapView.setCenterCoordinate(centerCoordinate: coordinate, zoomLevel: LocationConstant.zoomLevel, animated: true)
+                self.addCustomAnnotation(coordinate: coordinate)
+            }
            
-            // Set annotation on the Map View
-        //    mapView.setRegion(region, animated: true)
-            mapView.setCenterCoordinate(centerCoordinate: coordinate, zoomLevel: LocationConstant.zoomLevel, animated: true)
-            
+     
             locationManager.stopUpdatingLocation()
-            addCustomAnnotation(coordinate: coordinate)
+            
            
         }
     }
