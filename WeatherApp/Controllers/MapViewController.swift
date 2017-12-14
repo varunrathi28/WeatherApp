@@ -82,9 +82,50 @@ class MapViewController: UIViewController {
         
     }
     
+    func addCustomAnnotation(coordinate:CLLocationCoordinate2D)
+    {
+        let  pointAnnotation = CustomPointAnnotation()
+        pointAnnotation.pinCustomImageName = "pin"
+        pointAnnotation.coordinate = coordinate
+        pointAnnotation.title = "Current Location"
+        pointAnnotation.subtitle = "Get Forecast"
+        
+        let  pinAnnotationView:MKPinAnnotationView = MKPinAnnotationView(annotation: pointAnnotation, reuseIdentifier: "pin")
+        mapView.addAnnotation(pinAnnotationView.annotation!)
+    }
     
     @objc func calloutPressed()
     {
+        
+    }
+    
+    func pushToForecastScreen()
+    {
+        let storyboard = UIStoryboard(name:"Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier:StoryboardID.Forecast) as! ForecastViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func fetchCity(with location:CLLocation)
+    {
+        // ReverseGeocode city name from coordinate
+        
+        let geoCoder = CLGeocoder()
+        
+        geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            
+            if error == nil {
+                
+                if let placemark = placemarks?.first {
+                    // City Name
+                    let cityName = placemark.subAdministrativeArea
+                    
+                    Location.sharedInstance.city = cityName
+                    geoCoder.cancelGeocode()
+                }
+            }
+        }
+        
         
     }
 
@@ -101,6 +142,7 @@ extension MapViewController: MKMapViewDelegate {
                 
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "User")
                 annotationView?.canShowCallout = true
+                annotationView?.isDraggable = true
             }
             else {
                 
@@ -108,28 +150,33 @@ extension MapViewController: MKMapViewDelegate {
             }
             
             annotationView?.image = UIImage(named:"pin")
-            annotationView?.isDraggable = true
-            annotationView?.canShowCallout = true
-            let button = UIButton(type: .custom)
-            button.setTitle("Go", for: .normal)
-            button.addTarget(self, action: #selector(self.calloutPressed), for: .touchUpInside)
-            annotationView?.rightCalloutAccessoryView = button
             return annotationView
         }
         
         return MKAnnotationView()
     }
     
-    
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
         
-        
-        
+        if newState == .ending {
+           
+            if  let newCoord = view.annotation?.coordinate {
+                
+               currentLocation =  CLLocation(latitude:newCoord.latitude, longitude: newCoord.longitude)
+                fetchCity(with: currentLocation!)
+            }
+            
+        }
     }
     
+    
+    
+    
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-       
         
+    
+        pushToForecastScreen()
         
     }
 }
@@ -140,43 +187,19 @@ extension MapViewController:CLLocationManagerDelegate  {
        
         if let userLocation = locations.last{
             
-            Location.sharedInstance.latitude = userLocation.coordinate.latitude
-            Location.sharedInstance.longitude = userLocation.coordinate.latitude
+            
+            currentLocation = userLocation
             let coordinate = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
-            var region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpanMake(1.0,1.0))
+            var region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpanMake(0.25,0.25))
             
             
-            // ReverseGeocode city name from coordinate
-            
-            let geoCoder = CLGeocoder()
-            
-            geoCoder.reverseGeocodeLocation(userLocation) { (placemarks, error) in
-                
-                if error == nil {
-                    
-                    if let placemark = placemarks?.first {
-                        // City Name
-                        let cityName = placemark.subAdministrativeArea
-                        
-                        Location.sharedInstance.city = cityName
-                        geoCoder.cancelGeocode()
-                    }
-                }
-            }
-            
+            fetchCity(with: userLocation)
+           
             // Set annotation on the Map View
             mapView.setRegion(region, animated: true)
-            let annonation = MKPointAnnotation()
-            annonation.title = "Go"
-            annonation.coordinate = coordinate
-            
-            mapView.addAnnotation(annonation)
-            
-            
             locationManager.stopUpdatingLocation()
-            let storyboard = UIStoryboard(name:"Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier:StoryboardID.Forecast) as! ForecastViewController
-            self.navigationController?.pushViewController(vc, animated: true)
+            addCustomAnnotation(coordinate: coordinate)
+           
         }
     }
 }

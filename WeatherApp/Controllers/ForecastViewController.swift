@@ -21,8 +21,9 @@ class ForecastViewController: UIViewController {
     @IBOutlet weak var containerView:UIView!
     @IBOutlet weak var cityNameLbl:UILabel!
     @IBOutlet weak var cordinateLbl:UILabel!
-    @IBOutlet weak var btnTempType:UIButton!
+    @IBOutlet weak var backgroundImage:UIImageView!
     var arrDatasource:[Forecast] = []
+    
     
     @IBOutlet weak var segmentedControl:SJFluidSegmentedControl!
     
@@ -31,6 +32,7 @@ class ForecastViewController: UIViewController {
        fetchWeather()
         carouselView.backgroundColor = UIColor.clear
         
+       // addBlurView()
         // Do any additional setup after loading the view.
     }
     
@@ -63,8 +65,21 @@ class ForecastViewController: UIViewController {
     func getCoordinateFormat(location:Location) -> String {
         
         let latitute = String(format: "%.3f",location.latitude)
-        let longitude =  String(format: "%.4f", location.longitude)
+        let longitude =  String(format: "%.3f", location.longitude)
         return "( \(latitute) , \(longitude) )"
+    }
+    
+    func addBlurView()
+    {
+        let blurEffect = UIBlurEffect(style:.light)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.frame = carouselView.frame
+        carouselView.addSubview(blurredEffectView)
+        
+        let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect)
+        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        vibrancyEffectView.frame = backgroundImage.bounds
+      //  backgroundImage.addSubview(vibrancyEffectView)
     }
     
     
@@ -94,20 +109,18 @@ class ForecastViewController: UIViewController {
     {
         switch forecast.weatherType {
         case "Clouds":
-            view.backgroundColor = AppTheme.BACKGROUND_COLOR_CLOUDY
+            backgroundImage.image = UIImage(named:"back_cloud")
             
         case "Rain":
-            view.backgroundColor = AppTheme.BACKGROUND_COLOR_RAIN
+            backgroundImage.image = UIImage(named:"back_rain")
             
         default:
-            view.backgroundColor = AppTheme.BACKGROUND_COLOR_CLEAR
+            backgroundImage.image = UIImage(named:"back_clear")
         }
-        
-        
     }
     
-  
-
+    
+   
 }
 
 extension ForecastViewController : UICollectionViewDataSource {

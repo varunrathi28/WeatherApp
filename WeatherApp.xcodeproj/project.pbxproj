@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37843E8C1FE2C13F00F49D00 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37843E8B1FE2C13F00F49D00 /* CustomAnnotation.swift */; };
 		37874D101FE04A910028D7A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37874D0F1FE04A910028D7A5 /* AppDelegate.swift */; };
 		37874D121FE04A910028D7A5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37874D111FE04A910028D7A5 /* MapViewController.swift */; };
 		37874D151FE04A910028D7A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37874D131FE04A910028D7A5 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		37843E8B1FE2C13F00F49D00 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		37874D0C1FE04A910028D7A5 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37874D0F1FE04A910028D7A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37874D111FE04A910028D7A5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				37DE8FED1FE1389B0098BBE3 /* CarouselCell.swift */,
+				37843E8B1FE2C13F00F49D00 /* CustomAnnotation.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 			files = (
 				37874D181FE04A910028D7A5 /* WeatherApp.xcdatamodeld in Sources */,
 				37874D301FE04C840028D7A5 /* APIClient.swift in Sources */,
+				37843E8C1FE2C13F00F49D00 /* CustomAnnotation.swift in Sources */,
 				37874D121FE04A910028D7A5 /* MapViewController.swift in Sources */,
 				37DE8FEE1FE1389B0098BBE3 /* CarouselCell.swift in Sources */,
 				37DE8FF01FE13BA80098BBE3 /* WeatherManager.swift in Sources */,
