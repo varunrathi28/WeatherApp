@@ -6,4 +6,13 @@
 //  Copyright © 2017 vrat28. All rights reserved.
 //
 
-import Foundation
+import UIKit
+struct CellIdentifier {
+    static let CarouselCell = "cell"
+}
+
+struct StoryboardID {
+    static let Forecast = "ForecastVC"
+}
+
+

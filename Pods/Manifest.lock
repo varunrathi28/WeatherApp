@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.5.1)
+  - Kingfisher (4.5.0)
+  - ScalingCarousel (1.0.3)
+  - SJFluidSegmentedControl (1.1.2)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - Kingfisher (~> 4.0)
+  - ScalingCarousel
+  - SJFluidSegmentedControl (~> 1.0)
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Kingfisher: 26ae0473102b77b575da51960c932431e3745407
+  ScalingCarousel: c1ce9b7f97c423614773328b762b5b723ed9ff7e
+  SJFluidSegmentedControl: efd26ea5f0832c715e2750314a2dc0cc81e39ae5
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: 062d6a3231bf7fdc2007d2cbdc31f1e69716e4b8
+
+COCOAPODS: 1.2.0
