@@ -30,9 +30,9 @@
                                     <constraint firstAttribute="width" secondItem="bc6-QL-r5X" secondAttribute="height" multiplier="1:1" id="wh3-VM-ilc"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0R-TP-TCF">
-                                <rect key="frame" x="71.5" y="473.5" width="232" height="65"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather Cast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0R-TP-TCF">
+                                <rect key="frame" x="14" y="473.5" width="347.5" height="62.5"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="48"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
