@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37843E8C1FE2C13F00F49D00 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37843E8B1FE2C13F00F49D00 /* CustomAnnotation.swift */; };
+		37843E8E1FE2CBC400F49D00 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37843E8D1FE2CBC400F49D00 /* Extensions.swift */; };
 		37874D101FE04A910028D7A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37874D0F1FE04A910028D7A5 /* AppDelegate.swift */; };
 		37874D121FE04A910028D7A5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37874D111FE04A910028D7A5 /* MapViewController.swift */; };
 		37874D151FE04A910028D7A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37874D131FE04A910028D7A5 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		37843E8B1FE2C13F00F49D00 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		37843E8D1FE2CBC400F49D00 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		37874D0C1FE04A910028D7A5 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37874D0F1FE04A910028D7A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		37874D111FE04A910028D7A5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 			children = (
 				37874D2F1FE04C840028D7A5 /* APIClient.swift */,
 				37DE8FEF1FE13BA80098BBE3 /* WeatherManager.swift */,
+				37843E8D1FE2CBC400F49D00 /* Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				37874D321FE04CA00028D7A5 /* Forecast.swift in Sources */,
 				37874D2E1FE04C6F0028D7A5 /* AppTheme.swift in Sources */,
 				37874D2A1FE04C500028D7A5 /* StoryboardID.swift in Sources */,
+				37843E8E1FE2CBC400F49D00 /* Extensions.swift in Sources */,
 				37874D2C1FE04C590028D7A5 /* URLConstants.swift in Sources */,
 				37874D341FE051900028D7A5 /* Constants.swift in Sources */,
 				37874D3B1FE058DA0028D7A5 /* Weather.swift in Sources */,

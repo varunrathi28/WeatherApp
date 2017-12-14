@@ -22,7 +22,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Map View Controller-->
+        <!--Select your location-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Kn9-4Z-F2w"/>
+                    <navigationItem key="navigationItem" title="Select your location" id="Kn9-4Z-F2w"/>
                     <connections>
                         <outlet property="mapView" destination="DSm-yr-EBt" id="U9R-l9-eNO"/>
                     </connections>

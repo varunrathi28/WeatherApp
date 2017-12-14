@@ -32,6 +32,10 @@ class ForecastViewController: UIViewController {
        fetchWeather()
         carouselView.backgroundColor = UIColor.clear
         
+        let barButton = UIBarButtonItem(title:"Back", style: .done, target: self, action: #selector(backPressed))
+      
+        navigationItem.leftBarButtonItem = barButton
+        
        // addBlurView()
         // Do any additional setup after loading the view.
     }
@@ -45,6 +49,11 @@ class ForecastViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func backPressed()
+    {
+        navigationController?.popViewController(animated: true)
     }
     
     func fetchWeather()
@@ -118,9 +127,6 @@ class ForecastViewController: UIViewController {
             backgroundImage.image = UIImage(named:"back_clear")
         }
     }
-    
-    
-   
 }
 
 extension ForecastViewController : UICollectionViewDataSource {
@@ -143,12 +149,6 @@ extension ForecastViewController : UICollectionViewDataSource {
         
         return cell
     }
-    
-}
-
-extension ForecastViewController:UICollectionViewDelegate {
-    
-    
     
 }
 

@@ -196,7 +196,9 @@ extension MapViewController:CLLocationManagerDelegate  {
             fetchCity(with: userLocation)
            
             // Set annotation on the Map View
-            mapView.setRegion(region, animated: true)
+        //    mapView.setRegion(region, animated: true)
+            mapView.setCenterCoordinate(centerCoordinate: coordinate, zoomLevel: LocationConstant.zoomLevel, animated: true)
+            
             locationManager.stopUpdatingLocation()
             addCustomAnnotation(coordinate: coordinate)
            

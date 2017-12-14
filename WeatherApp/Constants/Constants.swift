@@ -27,6 +27,6 @@ let WEATHER_IMG_BASE_URL:String = "https://openweathermap.org/img/w/"
 struct LocationConstant {
     static let defaultLocation:CLLocation = CLLocation(latitude: 28.5355, longitude: 77.3910)
     
-    static let zoomLevel:CGFloat = 17.0
+    static let zoomLevel:Double = 17.0
     
 }
